@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Buyurtma qabul qilindi
+{% endblock %}
+
+{% block content %}
+    <section class="success-card">
+        <h1>Buyurtmangiz qabul qilindi!</h1>
+
+        <p>Buyurtma raqami: #{{ order.id }}</p>
+        <p>Jami: {{ order.total_price }} so‘m</p>
+        <p>Holati: {{ order.get_status_display }}</p>
+
+        <a href="{% url 'shop:product-list' %}">
+            Xaridni davom ettirish
+        </a>
+    </section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Mahsulotlar
+{% endblock %}
+
+{% block content %}
+    <h1>Mahsulotlar</h1>
+
+    <form method="get" class="filters">
+        <input
+            type="text"
+            name="q"
+            value="{{ query }}"
+            placeholder="Mahsulot qidirish"
+        >
+
+        <select name="category">
+            <option value="">
+                Barcha kategoriyalar
+            </option>
+
+            {% for category in categories %}
+                <option
+                    value="{{ category.slug }}"
+                    {% if selected_category == category.slug %}
+                        selected
+                    {% endif %}
+                >
+                    {{ category.name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">
+            Qidirish
+        </button>
+    </form>
+
+    <section class="product-grid">
+        {% for product in products %}
+            <article class="product-card">
+                {% if product.image %}
+                    <img
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}"
+                    >
+                {% endif %}
+
+                <h2>
+                    <a href="{{ product.get_absolute_url }}">
+                        {{ product.name }}
+                    </a>
+                </h2>
+
+                <p>{{ product.category.name }}</p>
+                <strong>{{ product.price }} so‘m</strong>
+                <p>Omborda: {{ product.stock }}</p>
+            </article>
+        {% empty %}
+            <p>Mahsulotlar topilmadi.</p>
+        {% endfor %}
+    </section>
+{% endblock %}

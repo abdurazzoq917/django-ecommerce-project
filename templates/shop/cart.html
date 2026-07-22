@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Savat
+{% endblock %}
+
+{% block content %}
+    <h1>Savat</h1>
+
+    {% if items %}
+        {% for item in items %}
+            <article class="cart-item">
+                <div>
+                    <h2>{{ item.product.name }}</h2>
+                    <p>
+                        {{ item.product.price }} ×
+                        {{ item.quantity }}
+                    </p>
+                    <strong>
+                        {{ item.subtotal }} so‘m
+                    </strong>
+                </div>
+
+                <form
+                    method="post"
+                    action="{% url 'shop:cart-remove' item.product.id %}"
+                >
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Olib tashlash
+                    </button>
+                </form>
+            </article>
+        {% endfor %}
+
+        <h2>Jami: {{ total }} so‘m</h2>
+
+        <a
+            href="{% url 'shop:checkout' %}"
+            class="button"
+        >
+            Buyurtma berish
+        </a>
+    {% else %}
+        <p>Savat bo‘sh.</p>
+    {% endif %}
+{% endblock %}

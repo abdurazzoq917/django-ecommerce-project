@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f5f7fb;
+    color: #1f2937;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 35px;
+    background: #111827;
+    color: white;
+}
+
+.navbar {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.inline-form button {
+    border: 0;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.filters {
+    margin-bottom: 25px;
+    display: flex;
+    gap: 12px;
+}
+
+input,
+select,
+textarea,
+button {
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font: inherit;
+}
+
+button,
+.button {
+    display: inline-block;
+    border: 0;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(240px, 1fr)
+    );
+    gap: 22px;
+}
+
+.product-card,
+.cart-item,
+.order-card,
+.form-card,
+.summary,
+.success-card {
+    padding: 22px;
+    border-radius: 14px;
+    background: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.product-card img {
+    width: 100%;
+    height: 210px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.product-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+.product-detail img {
+    width: 100%;
+    border-radius: 14px;
+}
+
+.cart-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #dbeafe;
+}
+
+@media (max-width: 700px) {
+    .navbar,
+    nav,
+    .filters {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .navbar {
+        padding: 18px 0;
+    }
+
+    .product-detail,
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+}

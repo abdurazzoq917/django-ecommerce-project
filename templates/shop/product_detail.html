@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    <section class="product-detail">
+        {% if product.image %}
+            <img
+                src="{{ product.image.url }}"
+                alt="{{ product.name }}"
+            >
+        {% endif %}
+
+        <div>
+            <p>{{ product.category.name }}</p>
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description|linebreaks }}</p>
+            <h2>{{ product.price }} so‘m</h2>
+            <p>Omborda: {{ product.stock }}</p>
+
+            {% if product.stock > 0 %}
+                <form
+                    method="post"
+                    action="{% url 'shop:cart-add' product.id %}"
+                >
+                    {% csrf_token %}
+
+                    <input
+                        type="number"
+                        name="quantity"
+                        value="1"
+                        min="1"
+                        max="{{ product.stock }}"
+                    >
+
+                    <button type="submit">
+                        Savatga qo‘shish
+                    </button>
+                </form>
+            {% else %}
+                <p>Mahsulot qolmagan.</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
